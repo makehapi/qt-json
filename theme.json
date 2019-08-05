@@ -1,0 +1,55 @@
+{
+    "type": 1,
+    "image1": "",
+    "image2": "",
+    "color1": "",
+    "color2": "",
+    "int": 1,
+    "intString": "2",
+    "double": 1.21,
+    "doubleString": "1.22",
+    "float": 2.21,
+    "floatString": "2.22",
+    "string": "hello qt",
+    "array": {
+        "intArray": [
+            1,
+            2,
+            3,
+            4
+        ],
+        "doubleArray": [
+            1.1,
+            2.2,
+            3.3,
+            4.4
+        ],
+        "stringArray": [
+            "str1",
+            "str2",
+            "str3",
+            "str4"
+        ],
+        "complexArray": [
+            1,
+            1.2,
+            "1",
+            "1.2",
+            "hello qt"
+        ],
+        "objectArray": [
+            {
+                "type": "int",
+                "value": 1
+            },
+            {
+                "type": "string",
+                "value": "hello qt"
+            },
+            {
+                "type": "double",
+                "value": 1.2
+            }
+        ]
+    }
+}
