@@ -12,6 +12,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QByteArray jsonContent = UsefulMethod::getContentFromFile(":/json/theme.json");
     QJsonDocument jsonDoc = QJsonDocument::fromJson(jsonContent);
     QJsonObject jsonObj = jsonDoc.object();
+    jsonObj.value("type").toInt()
     QVariant obj = jsonDoc.toVariant();
     QVariantMap objMap = jsonObj.toVariantMap();
     qDebug()<<"jsonDoc:\n"<<jsonDoc<<"\n"<<"jsonObj:\n"<<jsonObj<<"\n"<<"variant:\n"<<obj<<"variantMap:\n"<<objMap<<"\n";
