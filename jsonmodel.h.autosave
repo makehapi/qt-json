@@ -5,6 +5,7 @@
 #include <QVariant>
 #include <QJsonDocument>
 #include <QJsonObject>
+#include <QJsonArray>
 class JsonBaseModel:public QObject{
 public:
     JsonBaseModel(const QByteArray &jsonContent);

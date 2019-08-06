@@ -21,7 +21,25 @@ JsonArrayModel::JsonArrayModel(const QByteArray &jsonContent):JsonBaseModel (jso
 
 }
 JsonArrayModel::JsonArrayModel(const QJsonObject &jsonObj):JsonBaseModel (){
-
+   intArray = jsonObj.value("int").toArray();
+   doubleArray = jsonObj.value("double").toArray();
+   stringArray = jsonObj.value("string").toArray();
+   complexArray = jsonObj.value("complexArray").toArray();
+   objectArray = jsonObj.value("object").toArray();
+}
+JsonArrayModel::JsonArrayModel(const JsonArrayModel &jsonArrayModel){
+   intArray = jsonArrayModel.intArray;
+   doubleArray = jsonArrayModel.doubleArray;
+   stringArray = jsonArrayModel.stringArray;
+   complexArray = jsonArrayModel.complexArray;
+   objectArray = jsonArrayModel.objectArray;
+}
+void JsonArrayModel::operator=(const JsonArrayModel &jsonArrayModel){
+   intArray = jsonArrayModel.intArray;
+   doubleArray = jsonArrayModel.doubleArray;
+   stringArray = jsonArrayModel.stringArray;
+   complexArray = jsonArrayModel.complexArray;
+   objectArray = jsonArrayModel.objectArray;
 }
 void JsonArrayModel::printModel(){
 
@@ -40,7 +58,7 @@ JsonModel::JsonModel(const QByteArray &jsonContent):JsonBaseModel (jsonContent){
    doubleString = jsonObj["doubleString"].toDouble();
    string = jsonObj["string"].toString();
 
-   array(jsonObj.value("array").toObject());
+   array = JsonArrayModel(jsonObj.value("array").toObject());
 }
 
 void JsonModel::printModel(){
