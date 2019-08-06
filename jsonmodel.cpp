@@ -13,9 +13,17 @@ JsonBaseModel::JsonBaseModel(const QByteArray &jsonContent){
 }
 JsonBaseModel::JsonBaseModel(QString json){
 }
+JsonBaseModel::JsonBaseModel(){
+}
 JsonArrayObjectArrayModel::JsonArrayObjectArrayModel(const QByteArray &jsonContent):JsonBaseModel (jsonContent){
 }
+JsonArrayModel::JsonArrayModel(const QByteArray &jsonContent):JsonBaseModel (jsonContent){
+
+}
 JsonArrayModel::JsonArrayModel(const QJsonObject &jsonObj):JsonBaseModel (){
+
+}
+void JsonArrayModel::printModel(){
 
 }
 JsonModel::JsonModel(const QByteArray &jsonContent):JsonBaseModel (jsonContent){
@@ -32,7 +40,7 @@ JsonModel::JsonModel(const QByteArray &jsonContent):JsonBaseModel (jsonContent){
    doubleString = jsonObj["doubleString"].toDouble();
    string = jsonObj["string"].toString();
 
-   array(jsonObj.value("array"));
+   array(jsonObj.value("array").toObject());
 }
 
 void JsonModel::printModel(){

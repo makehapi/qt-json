@@ -9,6 +9,7 @@ class JsonBaseModel:public QObject{
 public:
     JsonBaseModel(const QByteArray &jsonContent);
     JsonBaseModel(QString json);
+    JsonBaseModel();
 protected:
     QJsonDocument doc;
     virtual void printModel() = 0;
@@ -19,16 +20,19 @@ public:
     JsonArrayObjectArrayModel(const QByteArray &jsonContent);
     QString type;
     QObject value;
+    void printModel();
 };
 
 class JsonArrayModel:public JsonBaseModel{
 public:
     JsonArrayModel(const QJsonObject &jsonObj);
+    JsonArrayModel(const QByteArray &jsonContent);
     QList<int> intArray;
     QList<double> doubleArray;
     QList<QString> stringArray;
     QVariantList complexArray;
     QList<JsonArrayObjectArrayModel> objectArray;
+    void printModel();
 };
 
 class JsonModel:public JsonBaseModel
