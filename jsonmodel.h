@@ -5,6 +5,7 @@
 #include <QVariant>
 #include <QJsonDocument>
 #include <QJsonObject>
+#include <QJsonArray>
 class JsonBaseModel:public QObject{
 public:
     JsonBaseModel(const QByteArray &jsonContent);
@@ -29,9 +30,9 @@ public:
     JsonArrayModel(const QByteArray &jsonContent);
     JsonArrayModel(const JsonArrayModel &jsonArrayModel);
     void operator=(const JsonArrayModel &jsonArrayModel);
-    QJsonArray intArray;
-    QJsonArray doubleArray;
-    QJsonArray stringArray;
+    QList<int> intArray;
+    QList<double> doubleArray;
+    QList<QString> stringArray;
     QVariantList complexArray;
     QList<JsonArrayObjectArrayModel> objectArray;
     void printModel();

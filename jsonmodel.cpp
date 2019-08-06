@@ -1,6 +1,6 @@
 #include "jsonmodel.h"
 #include <QDebug>
-
+#include <QList>
 JsonBaseModel::JsonBaseModel(const QByteArray &jsonContent){
     QJsonParseError *error = new QJsonParseError;
     doc = QJsonDocument::fromJson(jsonContent, error);
@@ -21,6 +21,19 @@ JsonArrayModel::JsonArrayModel(const QByteArray &jsonContent):JsonBaseModel (jso
 
 }
 JsonArrayModel::JsonArrayModel(const QJsonObject &jsonObj):JsonBaseModel (){
+    QJsonArray tmp = jsonObj.value("int").toArray();
+    intArray = QList();
+    for (int i = 0; i < tmp.size(); ++i) {
+        intArray.append(tmp.at(i));
+    }
+    doubleArray = QList<double>();
+    for (int i = 0; i < tmp.size(); ++i) {
+        doubleArray.append(tmp.at(i));
+    }
+    stringArray = QList<QString>();
+    for (int i = 0; i < stringArray.size(); ++i) {
+
+    }
    intArray = jsonObj.value("int").toArray();
    doubleArray = jsonObj.value("double").toArray();
    stringArray = jsonObj.value("string").toArray();
