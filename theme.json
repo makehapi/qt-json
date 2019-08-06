@@ -1,9 +1,9 @@
 {
     "type": 1,
-    "image1": "",
-    "image2": "",
-    "color1": "",
-    "color2": "",
+    "image1": "image1",
+    "image2": "image2",
+    "color1": "color1",
+    "color2": "color2",
     "int": 1,
     "intString": "2",
     "double": 1.21,

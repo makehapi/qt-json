@@ -5,24 +5,25 @@
 #include <QVariant>
 #include <QJsonDocument>
 #include <QJsonObject>
-class JsonBaseModel{
+class JsonBaseModel:public QObject{
 public:
     JsonBaseModel(const QByteArray &jsonContent);
     JsonBaseModel(QString json);
 protected:
     QJsonDocument doc;
+    virtual void printModel() = 0;
 };
 
 class JsonArrayObjectArrayModel:public JsonBaseModel{
 public:
-    JsonArrayObjectArrayModel();
+    JsonArrayObjectArrayModel(const QByteArray &jsonContent);
     QString type;
     QObject value;
 };
 
 class JsonArrayModel:public JsonBaseModel{
 public:
-    JsonArrayModel();
+    JsonArrayModel(const QJsonObject &jsonObj);
     QList<int> intArray;
     QList<double> doubleArray;
     QList<QString> stringArray;
@@ -33,7 +34,7 @@ public:
 class JsonModel:public JsonBaseModel
 {
 public:
-    JsonModel();
+    JsonModel(const QByteArray &jsonContent);
     int type;
     QString image1;
     QString image2;
@@ -46,7 +47,8 @@ public:
     float floatValue;
     float floatString;
     QString string;
-    QVariantList array;
+    JsonArrayModel array;
+    void printModel();
 };
 
 

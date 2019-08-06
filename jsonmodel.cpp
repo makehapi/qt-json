@@ -1,19 +1,6 @@
 #include "jsonmodel.h"
 #include <QDebug>
 
-JsonArrayObjectArrayModel::JsonArrayObjectArrayModel(){
-
-}
-
-JsonArrayModel::JsonArrayModel(){
-
-}
-
-JsonModel::JsonModel()
-{
-
-}
-
 JsonBaseModel::JsonBaseModel(const QByteArray &jsonContent){
     QJsonParseError *error = new QJsonParseError;
     doc = QJsonDocument::fromJson(jsonContent, error);
@@ -26,3 +13,29 @@ JsonBaseModel::JsonBaseModel(const QByteArray &jsonContent){
 }
 JsonBaseModel::JsonBaseModel(QString json){
 }
+JsonArrayObjectArrayModel::JsonArrayObjectArrayModel(const QByteArray &jsonContent):JsonBaseModel (jsonContent){
+}
+JsonArrayModel::JsonArrayModel(const QJsonObject &jsonObj):JsonBaseModel (){
+
+}
+JsonModel::JsonModel(const QByteArray &jsonContent):JsonBaseModel (jsonContent){
+   QJsonObject jsonObj = this->doc.object();
+   type = jsonObj.value("type").toInt();
+   image1 = jsonObj.value("image1").toString();
+   image2 = jsonObj["image2"].toString();
+   color1 = jsonObj["color1"].toString();
+   color2 = jsonObj["color3"].toString();
+
+   intValue = jsonObj["int"].toInt();
+   intString = jsonObj["intString"].toInt();
+   doubleValue = jsonObj["double"].toDouble();
+   doubleString = jsonObj["doubleString"].toDouble();
+   string = jsonObj["string"].toString();
+
+   array(jsonObj.value("array"));
+}
+
+void JsonModel::printModel(){
+   qDebug()<<type<<image1<<image2<<color1<<color2<<intValue<<"\n";
+}
+
